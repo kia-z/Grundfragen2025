@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grundfragen DH 2025</title>
+    <meta name="description" content="Database interface for the project Tartinians in Europe">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="./index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./addTerm.html">Glossar / Themen hinzufugen</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./viewGlossar.html">Glossar</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./viewThemen.html">Themen</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+    <main>
+        <div class="container mt-5">
+            <h3>Vorbereitung von unserer Glossar und Themensammlung</h3>
+        </div>
+        <div class="container mt-5">
+            <p>Fügen Sie hier Ihre Begriffe oder Themen ein, indem Sie das Formular ausfüllen.</p>
+        </div>
+        <div class="container mt-5">
+            <form id="dataForm">                
+                <div class="mb-3">
+                    <label for="type" class="form-label">Möchten Sie dem Glossar einen Begriff hinzufügen oder eine kurze Reflexion über ein breiteres Thema?</label>
+                    <select class="form-select" id="type">
+                        <option selected>Glossar</option>
+                        <option value="themen">Themen</option>
+                    </select>
+                </div>      
+                <div class="mb-3">
+                    <label for="name" class="form-label">Ihre Name</label>
+                    <input type="text" class="form-control" id="author" placeholder="Ihre Name">
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="topic" class="form-label">Begriff / Theme</label>
+                        <input type="text" class="form-control" id="topic" placeholder="Titel für diese Angabe">
+                    </div>
+                    <div class="col">
+                        <label for="definition" class="form-label">Definition</label>
+                        <textarea class="form-control" id="definition" placeholder="Ihre Definition"></textarea>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="linkOne" class="form-label">Link</label>
+                        <input type="text" class="form-control" id="linkOne">
+                    </div>
+                    <div class="col">
+                        <label for="linkTwo" class="form-label">Zusätzliche Link</label>
+                        <input type="text" class="form-control" id="linkTwo">
+                    </div>
+                </div>                
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="linkThree" class="form-label">Zusätzliche Link</label>
+                        <input type="text" class="form-control" id="linkThree">
+                    </div>
+                    <div class="col">
+                        <label for="references" class="form-label">Bibliographische Angabe</label>
+                        <textarea class="form-control" id="references"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="tags" class="form-label">Tags</label>
+                    <input type="text" class="form-control" id="tags">
+                </div>                
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <p id="responseMessageAdd"></p>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <div class="container mt-5" id="footer-text">
+            DH Glossary - Grundfragen der DH SoSe 2025 Projekt.
+        </div>
+    </footer>
+    <script src="js/add.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
