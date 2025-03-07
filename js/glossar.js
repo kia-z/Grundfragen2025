@@ -2,6 +2,7 @@ fetch("https://script.google.com/macros/s/AKfycbzgIssrKZtHsuhTtXpedviwwxZcZE4r4k
     method: "GET",
     mode: "no-cors",
     headers: { "Content-Type": "application/json" },
+    redirect: "follow"
 })
     .then(response => response.json())
     .then(data => {
