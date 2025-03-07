@@ -83,29 +83,3 @@ function filterTopicsByLetter(letter, topics) {
 
     $topicsList.append($filteredTopics);
 }
-
-var definitions = {
-    alpha: 'Alpha definition',
-    beta: 'Beta definition'
-  };
-  
-  var $definitionsList = $('ul#definition-list');
-  var $definitions = $(document.createDocumentFragment());
-  
-  for (var key in definitions) {
-    $('<li/>')
-      .text(key)
-      .on('click', displayDefinition.bind(null, key, definitions[key]))
-      .appendTo($definitions);
-  }
-  
-  $definitionsList.append($definitions);
-  
-  function displayDefinition(name, definition) {
-    $('#definition-display h1').text(name);
-    $('#definition-display p').text(definition);
-  }
-
-var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
-var arr = letters.map(x => ({letter: x, messages: messages.filter(m=>m.title[0] === x)}))
-var result = _.mapValues(_.keyBy(arr, 'letter'), 'messages')
