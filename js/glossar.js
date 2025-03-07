@@ -1,5 +1,6 @@
 fetch("https://script.google.com/macros/s/AKfycbx061wjXRijGbFep0ri_uMP8Pz8WFbMp2EtyiUyjeQ/dev?action=get", {
-    method: "GET"
+    method: "GET",
+    mode: "no-cors",
 })
     .then(response => response.json())
     .then(data => {
