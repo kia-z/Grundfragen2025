@@ -1,6 +1,7 @@
-fetch("https://script.google.com/macros/s/AKfycbx061wjXRijGbFep0ri_uMP8Pz8WFbMp2EtyiUyjeQ/dev?action=get", {
+fetch("https://script.google.com/macros/s/AKfycbzgIssrKZtHsuhTtXpedviwwxZcZE4r4kKZ6u3VVu1z7Vd0MgLPl6Rb4cMRjOEixMYf/exec?action=get", {
     method: "GET",
     mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
 })
     .then(response => response.json())
     .then(data => {
