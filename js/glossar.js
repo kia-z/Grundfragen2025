@@ -5,6 +5,7 @@ fetch("https://script.google.com/macros/s/AKfycbzgIssrKZtHsuhTtXpedviwwxZcZE4r4k
 })
     .then(response => response.json())
     .then(data => {
+        console.log(data);
         if (data.error) {
             alert("Error fetching data.");
             return;
