@@ -23,6 +23,9 @@ fetch("https://script.google.com/macros/s/AKfycbzgIssrKZtHsuhTtXpedviwwxZcZE4r4k
             }
         }));
 
+        // Filter topics by type 'Glossar'
+        topics = topics.filter(item => item.details.type === 'Glossar');
+
         // Sort topics alphabetically
         topics.sort((a, b) => a.topic.localeCompare(b.topic));
 
@@ -36,7 +39,6 @@ fetch("https://script.google.com/macros/s/AKfycbzgIssrKZtHsuhTtXpedviwwxZcZE4r4k
             $('<li/>')
                 .text(item.topic)
                 .on('click', function() {
-                    console.log('Topic clicked:', item.topic); // Log the clicked topic
                     displayDetails(item.details);
                 })
                 .appendTo($topics);
@@ -49,17 +51,18 @@ fetch("https://script.google.com/macros/s/AKfycbzgIssrKZtHsuhTtXpedviwwxZcZE4r4k
                         </button>
                     </h2>
                     <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <h1>${item.details.topic}</h1>
-                            <p><strong>Author:</strong> ${item.details.author}</p>
-                            <p><strong>Definition:</strong> ${item.details.definition}</p>
-                            <p><strong>Link One:</strong> <a href="${item.details.linkOne}" target="_blank">${item.details.linkOne}</a></p>
-                            <p><strong>Link Two:</strong> <a href="${item.details.linkTwo}" target="_blank">${item.details.linkTwo}</a></p>
-                            <p><strong>Link Three:</strong> <a href="${item.details.linkThree}" target="_blank">${item.details.linkThree}</a></p>
-                            <p><strong>References:</strong> ${item.details.references}</p>
-                            <p><strong>Tags:</strong> ${item.details.tags}</p>
-                            <p><strong>Type:</strong> ${item.details.type}</p>
-                        </div>
+                            <div class="accordion-body">
+                        <p>${item.details.definition}</p>
+                        <p><strong>Links:</strong> 
+                        <ul>
+                        <li><a href="${item.details.linkOne}" target="_blank">${item.details.linkOne}</a></li>
+                        <li>><a href="${item.details.linkTwo}" target="_blank">${item.details.linkTwo}</a></li>
+                        <li><a href="${item.details.linkThree}" target="_blank">${item.details.linkThree}</a></li>
+                        </ul></p>
+                        <p><strong>References:</strong> ${item.details.references}</p>
+                        <p><strong>Tags:</strong> ${item.details.tags}</p>
+                        <p><i>Author:</i> ${item.details.author}</p>
+                    </div>
                     </div>
                 </div>
             `;
@@ -75,23 +78,17 @@ fetch("https://script.google.com/macros/s/AKfycbzgIssrKZtHsuhTtXpedviwwxZcZE4r4k
         var $letters = $(document.createDocumentFragment());
 
         letters.forEach(letter => {
-            $('<li/>') // Changed from <row/> to <li/>
+            $('<li/>') 
                 .text(letter)
                 .css({
                     'padding-right': '7px',
                     'padding-left': '7px',
-                    'font-weight': 'bold', // Make letters bold
                     'cursor': 'pointer',
                     'display': 'inline-block',
-                    'text-decoration': 'underline' // Underline all letters initially
+                    'text-decoration': 'underline' 
                 })
                 .on('click', function() {
-                    console.log('Letter clicked:', letter); // Log the clicked letter
-                    // Underline all letters
-                    $('#letters-list li').css('text-decoration', 'underline');
-                    // Remove underline from the clicked letter
                     $(this).css('text-decoration', 'none');
-                    // Filter topics by the clicked letter
                     filterTopicsByLetter(letter, topics);
                 })
                 .appendTo($letters);
@@ -100,13 +97,11 @@ fetch("https://script.google.com/macros/s/AKfycbzgIssrKZtHsuhTtXpedviwwxZcZE4r4k
         $lettersList.append($letters);
     })
     .catch(error => {
-        console.error('Fetch error:', error); // Log any fetch errors
+        console.error('Fetch error:', error);
         alert("Error fetching data.");
     });
 
 function displayDetails(details) {
-    console.log('Displaying details:', details); // Log the details object to the console
-
     $('#topic').text(details.topic || "");
     $('#author').text(details.author || "");
     $('#definition').text(details.definition || "");
@@ -115,11 +110,9 @@ function displayDetails(details) {
     $('#linkThree').text(details.linkThree || "");
     $('#references').text(details.references || "");
     $('#tags').text(details.tags || "");
-    $('#type').text(details.type || "");
 }
 
 function filterTopicsByLetter(letter, topics) {
-    console.log('Filtering topics by letter:', letter); // Log the letter used for filtering
     var $topicsList = $('ul#topics-list');
     $topicsList.empty();
 
@@ -131,7 +124,6 @@ function filterTopicsByLetter(letter, topics) {
         $('<li/>')
             .text(item.topic)
             .on('click', function() {
-                console.log('Filtered topic clicked:', item.topic); // Log the clicked filtered topic
                 displayDetails(item.details);
             })
             .appendTo($filteredTopics);
@@ -145,15 +137,16 @@ function filterTopicsByLetter(letter, topics) {
                 </h2>
                 <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <h1>${item.details.topic}</h1>
-                        <p><strong>Author:</strong> ${item.details.author}</p>
-                        <p><strong>Definition:</strong> ${item.details.definition}</p>
-                        <p><strong>Link One:</strong> <a href="${item.details.linkOne}" target="_blank">${item.details.linkOne}</a></p>
-                        <p><strong>Link Two:</strong> <a href="${item.details.linkTwo}" target="_blank">${item.details.linkTwo}</a></p>
-                        <p><strong>Link Three:</strong> <a href="${item.details.linkThree}" target="_blank">${item.details.linkThree}</a></p>
+                        <p>${item.details.definition}</p>
+                        <p><strong>Links:</strong> 
+                        <ul>
+                        <li><a href="${item.details.linkOne}" target="_blank">${item.details.linkOne}</a></li>
+                        <li>><a href="${item.details.linkTwo}" target="_blank">${item.details.linkTwo}</a></li>
+                        <li><a href="${item.details.linkThree}" target="_blank">${item.details.linkThree}</a></li>
+                        </ul></p>
                         <p><strong>References:</strong> ${item.details.references}</p>
                         <p><strong>Tags:</strong> ${item.details.tags}</p>
-                        <p><strong>Type:</strong> ${item.details.type}</p>
+                        <p><i>Author:</i> ${item.details.author}</p>
                     </div>
                 </div>
             </div>
